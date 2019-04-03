@@ -9,39 +9,14 @@ import NotFound from 'pages/NotFound'
 
 class Router extends Component {
   render () {
-    const { boardsList } = this.props
-    const boardsRoutes = boardsList.map(({ id, name }) => ({
-      path: `/${id}`,
-      component: <Board boardId={id} boardName={name} />
-    }))
-
-    const threads = boardsList.flatMap(({ threads, id }) => {
-      return threads.map(thread => {
-        thread.boardId = id
-        return thread
-      })
-    })
-
-    const threadsRoutes = threads.map(({ boardId, id }) => ({
-      path: `/${boardId}/${id}`,
-      component: <Thread boardId={boardId} threadId={id} />
-    }))
-
+    const routes = this.createRoutes()
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path='/' component={Main} />
-          {boardsRoutes.map(({ path, component }) =>
+          {routes.map(({ path, component }) =>
             <Route
-              key={`board${path}`}
-              exact
-              path={path}
-              render={() => component}
-            />
-          )}
-          {threadsRoutes.map(({ path, component }) =>
-            <Route
-              key={`thread${path}`}
+              key={`page${path}`}
               exact
               path={path}
               render={() => component}
@@ -51,6 +26,22 @@ class Router extends Component {
         </Switch>
       </BrowserRouter>
     )
+  }
+
+  createRoutes () {
+    const { boardsList } = this.props
+    return boardsList
+      .flatMap(({ id: boardId, name, threads }) => [
+        {
+          path: `/${boardId}`,
+          component: <Board boardId={boardId} boardName={name} />
+        },
+        threads.map(({ id: threadId }) => ({
+          path: `/${boardId}/${threadId}`,
+          component: <Thread boardId={boardId} threadId={threadId} />
+        }))
+      ])
+      .flat()
   }
 }
 

@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import Button from 'components/Button'
+import styles from './styles.module.scss'
 
 class Navigation extends Component {
   render () {
     const { boardsList } = this.props
     return (
-      <div>
+      <div className={styles.navigation}>
         {boardsList.map(({ id, name }) =>
           <Button
             key={`linkTo${id}`}

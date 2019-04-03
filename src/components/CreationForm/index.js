@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Button from 'components/Button'
 import Input from 'components/Input'
 
-class ThreadCreator extends Component {
+class CreationForm extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -13,13 +13,13 @@ class ThreadCreator extends Component {
   }
 
   render () {
-    const { boardId, createThread } = this.props
+    const { sign } = this.props
     const { active, inputValue } = this.state
     if (!active) {
       return (
         <Button
           onClick={() => this.setState({ active: true })}>
-          Создать тред
+          {sign}
         </Button>
       )
     }
@@ -27,7 +27,7 @@ class ThreadCreator extends Component {
     return (
       <div>
         <Button
-          onClick={() => this.setState({ active: false })}>
+          onClick={() => this.setState({ active: false, inputValue: '' })}>
           Закрыть форму
         </Button>
         <Input
@@ -35,12 +35,23 @@ class ThreadCreator extends Component {
           onChange={(value) => this.setState({ inputValue: value })}
         />
         <Button
-          disabled>
-          Создать
+          onClick={() => this.onCreateBtnClick()}
+          disabled={inputValue.trim().length === 0}>
+          {sign}
         </Button>
       </div>
     )
   }
+
+  onCreateBtnClick () {
+    const { createAction, boardId, threadId } = this.props
+    const { inputValue } = this.state
+    createAction(inputValue, boardId, threadId)
+    this.setState({
+      inputValue: '',
+      active: false
+    })
+  }
 }
 
-export default ThreadCreator
+export default CreationForm

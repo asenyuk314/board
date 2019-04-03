@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import * as actions from 'store/boards/actions'
+import CreationForm from 'components/CreationForm'
 import Button from 'components/Button'
 import Post from 'components/Post'
 
 class Thread extends Component {
   render () {
-    const { boardId } = this.props
+    const { boardId, threadId, createPost } = this.props
     return (
       <div>
         <div>
@@ -16,6 +18,12 @@ class Thread extends Component {
           </Button>
         </div>
         {this.renderPosts()}
+        <CreationForm
+          boardId={boardId}
+          threadId={threadId}
+          createAction={createPost}
+          sign='Ответить'
+        />
       </div>
     )
   }
@@ -44,4 +52,8 @@ const mapStateToProps = (state) => ({
   boardsList: state.boards.boardsList
 })
 
-export default connect(mapStateToProps)(Thread)
+const mapDispatchToProps = {
+  createPost: actions.createPost
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Thread)

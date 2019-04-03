@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import ThreadCreator from 'components/ThreadCreator'
-import ThreadPreview from 'components/ThreadPreview'
+import CreationForm from 'components/CreationForm'
+import Post from 'components/Post'
 import * as actions from 'store/boards/actions'
 
 class Board extends Component {
@@ -16,9 +16,10 @@ class Board extends Component {
         <div>
           Добро пожаловать! <s>Снова</s>
         </div>
-        <ThreadCreator
+        <CreationForm
           boardId={boardId}
-          createThread={createThread}
+          createAction={createThread}
+          sign='Создать тред'
         />
         {this.renderThreads()}
       </div>
@@ -32,11 +33,12 @@ class Board extends Component {
       .threads
     return (
       <div>
-        {threads.map(item =>
-          <ThreadPreview
-            key={`threads${item.id}`}
+        {threads.map(({ id, posts }) =>
+          <Post
+            key={`threads${id}`}
             boardId={boardId}
-            { ...item }
+            id={id}
+            text={posts[0].text}
           />
         )}
       </div>

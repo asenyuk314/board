@@ -6,7 +6,8 @@
 }
 
 body {
-  color: $DEFAULT_TEXT;
   font-family: 'Roboto', sans-serif;
+  background-color: $PAGE_BG;
+  color: $DEFAULT_TEXT;
   font-size: 14px;
 }

@@ -1,0 +1,10 @@
+@import 'resources/variables.scss';
+
+.app {
+  width: max-content;
+  background-color: $DEFAULT_BG;
+  margin: 20px auto;
+  border-radius: 6px;
+  box-shadow: $BASIC_SHADOW;
+  padding: 40px;
+}
