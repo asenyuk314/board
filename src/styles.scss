@@ -1,0 +1,12 @@
+@import 'resources/variables.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: $DEFAULT_TEXT;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}

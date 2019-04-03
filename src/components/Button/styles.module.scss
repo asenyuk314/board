@@ -1,0 +1,29 @@
+@import 'resources/variables.scss';
+
+.button {
+  background-color: $AGILE_BG;
+  color: $WHITE_TEXT;
+  padding: 7px;
+  border-radius: 5px;
+  user-select: none;
+  width: max-content;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $DARK_BG;
+  }
+
+  &:active {
+    /*Надо будет выбрать другой цвет*/
+    background-color: $DARK_BG;
+  }
+
+  &.disabled {
+    background-color: $DISABLED_BG;
+    cursor: default;
+  }
+}
+
+.link {
+  text-decoration: none;
+}
