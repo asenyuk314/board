@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import Card from 'components/Card'
 import Button from 'components/Button'
+import styles from './styles.module.scss'
 
 class Post extends Component {
   render () {
     const { text } = this.props
     return (
-      <div>
-        {this.renderHeader()}
-        <div>
-          {text}
-        </div>
+      <div className={styles.post}>
+        <Card>
+          {this.renderHeader()}
+          <div className={styles.text}>
+            {text}
+          </div>
+        </Card>
       </div>
     )
   }
@@ -20,8 +24,8 @@ class Post extends Component {
     const { id, boardId } = this.props
     if (boardId) {
       return (
-        <div>
-          #{id}
+        <div className={styles.header}>
+          {`#${id}`}
           <Button
             goTo={`/${boardId}/${id}`}>
             Открыть
@@ -31,8 +35,8 @@ class Post extends Component {
     }
 
     return (
-      <div>
-        #{id}
+      <div className={styles.header}>
+        {`#${id}`}
       </div>
     )
   }

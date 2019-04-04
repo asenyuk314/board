@@ -1,14 +1,64 @@
-import { GET_INFO, CREATE_THREAD, CREATE_POST } from './consts'
+import { GET_INFO, CREATE_THREAD, CREATE_POST, HIDE_NAVIGATION } from './consts'
 
 const initialState = {
-  boardsList: []
+  boardsList: [
+    {
+      id: 'a',
+      name: 'Аниме',
+      threads: [
+        {
+          id: 0,
+          posts: [
+          {
+            id: 0,
+            text: 'Подскажите аниме'
+          },
+          {
+            id: 1,
+            text: 'Боку но пико'
+          }
+        ]
+        }
+      ],
+      postsLength: 2
+    },
+    {
+      id: 'b',
+      name: 'Бред',
+      threads: [
+        {
+          id: 0,
+          posts: [
+            {
+              id: 0,
+              text: 'Тян не нужны!'
+            }
+          ]
+        },
+        {
+          id: 1,
+          posts: [
+            {
+              id: 1,
+              text: 'Господи, как же хочется тяночку!'
+            },
+            {
+              id: 2,
+              text: 'Разве я многого прошу?'
+            }
+          ]
+        }
+      ],
+      postsLength: 3
+    }
+  ],
+  navigationHidden: false
 }
 
 const boards = (state = initialState, action) => {
   switch (action.type) {
     case GET_INFO: {
-      const { boardsList } = action.payload
-      return { ...state, boardsList }
+      return state
     }
 
     case CREATE_THREAD: {
@@ -54,6 +104,11 @@ const boards = (state = initialState, action) => {
         return board
       })
       return { ...state, boardsList }
+    }
+
+    case HIDE_NAVIGATION: {
+      const navigationHidden = !state.navigationHidden
+      return { ...state, navigationHidden }
     }
 
     default:

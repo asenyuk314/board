@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import Navigation from 'components/Navigation'
+import Card from 'components/Card'
 import CreationForm from 'components/CreationForm'
 import Post from 'components/Post'
 import * as actions from 'store/boards/actions'
@@ -10,17 +12,20 @@ class Board extends Component {
     const { boardName, createThread, boardId } = this.props
     return (
       <div>
-        <div>
-          <b>{boardName}</b>
-        </div>
-        <div>
-          Добро пожаловать! <s>Снова</s>
-        </div>
-        <CreationForm
-          boardId={boardId}
-          createAction={createThread}
-          sign='Создать тред'
-        />
+        <Card>
+          <Navigation />
+          <div>
+            <b>{boardName}</b>
+          </div>
+          <div>
+            Добро пожаловать! <s>Снова</s>
+          </div>
+          <CreationForm
+            boardId={boardId}
+            createAction={createThread}
+            sign='Создать тред'
+          />
+        </Card>
         {this.renderThreads()}
       </div>
     )

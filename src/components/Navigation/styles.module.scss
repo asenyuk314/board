@@ -1,5 +1,26 @@
 .navigation {
-  display: flex;
   width: 100%;
-  flex-wrap: wrap;
+
+  .cross {
+    display: flex;
+    justify-content: flex-end;
+
+    .img {
+      cursor: pointer;
+    }
+  }
+
+  .catalog {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    & > a {
+      margin: 5px;
+    }
+
+    &.hidden {
+      display: none;
+    }
+  }
 }

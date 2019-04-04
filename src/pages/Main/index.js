@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import Card from 'components/Card'
 import Navigation from 'components/Navigation'
 import * as actions from 'store/boards/actions'
 import styles from './styles.module.scss'
@@ -14,13 +15,15 @@ class Main extends Component {
   render () {
     return (
       <div className={styles.main}>
-        <div className={styles.header}>
-          Реакт.ч
-        </div>
-        <div className={styles.subheader}>
-          Добро пожаловать! <s>Снова</s>
-        </div>
-        <Navigation />
+        <Card className={styles.card}>
+          <div className={styles.header}>
+            Реакт.ч
+          </div>
+          <div className={styles.subheader}>
+            Добро пожаловать! <s>Снова</s>
+          </div>
+          <Navigation alwaysShown />
+        </Card>
       </div>
     )
   }
