@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
+
+import styles from './styles.module.scss'
 
 class Input extends Component {
   constructor (props) {
@@ -10,9 +13,11 @@ class Input extends Component {
   }
 
   render () {
-    const { value } = this.props
+    const { value, className } = this.props
     const { inputValue } = this.state
     return <textarea
+      className={classNames([styles.textarea], [className])}
+      rows={8}
       value={value !== undefined ? value : inputValue}
       onChange={(e) => this.onChangeHandler(e)}
     />
@@ -31,7 +36,9 @@ class Input extends Component {
     // Значение инпута
     value: PropTypes.string,
     // Функция, выполняющаяся при вводе текста в инпут
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    // Пользовательский класс
+    className: PropTypes.string
   }
 }
 

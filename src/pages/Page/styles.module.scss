@@ -1,0 +1,32 @@
+@import 'resources/variables.scss';
+
+.page {
+
+  .header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding-top: 20px;
+
+    .topDiv {
+      width: 100%;
+      top: 0;
+      background-color: $PAGE_BG;
+      height: 30px;
+      position: fixed;
+      z-index: 1;
+    }
+
+    .card {
+      position: relative;
+      margin: 0 auto;
+      padding: 20px 40px;
+      z-index: 2;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}

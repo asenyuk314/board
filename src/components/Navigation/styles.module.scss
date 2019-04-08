@@ -1,26 +1,14 @@
 .navigation {
   width: 100%;
-
-  .cross {
-    display: flex;
-    justify-content: flex-end;
-
-    .img {
-      cursor: pointer;
-    }
-  }
+  margin-top: 20px;
 
   .catalog {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 
-    & > a {
+    & > div {
       margin: 5px;
-    }
-
-    &.hidden {
-      display: none;
     }
   }
 }

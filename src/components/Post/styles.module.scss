@@ -1,3 +1,5 @@
+@import 'resources/variables.scss';
+
 .post {
   .header {
     display: flex;
@@ -6,6 +8,15 @@
   }
 
   .text {
-    margin-top: 10px;
+    white-space: pre-wrap;
+    word-break: break-word;
+
+    & > p:not(:first-child) {
+      margin-top: $FONT_SIZE;
+    }
+
+    &NotEmpty {
+      margin-top: 10px;
+    }
   }
 }

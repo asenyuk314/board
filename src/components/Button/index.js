@@ -7,12 +7,13 @@ import styles from './styles.module.scss'
 
 class Button extends Component {
   render () {
-    const { children, onClick, goTo, disabled } = this.props
+    const { children, onClick, goTo, disabled, className } = this.props
     if (disabled) {
       return <div
         className={classNames(
           [styles.button],
-          [styles.disabled]
+          [styles.disabled],
+          [className]
         )}>
         {children}
       </div>
@@ -20,16 +21,23 @@ class Button extends Component {
 
     if (goTo) {
       return (
-        <Link className={styles.link} to={goTo}>
-          <div className={styles.button}>
-            {children}
-          </div>
-        </Link>
+        <div className={classNames([styles.linkButton], [className])}>
+          <Link className={styles.link} to={goTo}>
+            <div className={styles.button}>
+              {children}
+            </div>
+          </Link>
+        </div>
       )
     }
 
     return (
-      <div className={styles.button} onClick={onClick}>
+      <div
+        className={classNames(
+          [styles.button],
+          [className]
+        )}
+        onClick={onClick}>
         {children}
       </div>
     )
@@ -44,7 +52,9 @@ class Button extends Component {
     // Внутри должен лежать путь к странице, формата '/some-page'
     goTo: PropTypes.string,
     // Если true - подключаются стили неработающей кнопки и отключается onClick
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    // Пользовательский класс
+    className: PropTypes.string
   }
 
   static defaultProps = {

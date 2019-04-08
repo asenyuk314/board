@@ -4,7 +4,7 @@
   width: 600px;
   background-color: $DEFAULT_BG;
   margin: 5px auto;
-  border-radius: 6px;
+  border-radius: $BORDER_RADIUS;
   box-shadow: $BASIC_SHADOW;
   padding: 40px;
 }

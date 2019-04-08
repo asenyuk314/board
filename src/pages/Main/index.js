@@ -14,17 +14,15 @@ class Main extends Component {
 
   render () {
     return (
-      <div className={styles.main}>
-        <Card className={styles.card}>
-          <div className={styles.header}>
-            Реакт.ч
-          </div>
-          <div className={styles.subheader}>
-            Добро пожаловать! <s>Снова</s>
-          </div>
-          <Navigation alwaysShown />
-        </Card>
-      </div>
+      <Card className={styles.main}>
+        <div className={styles.header}>
+          Реакт.ч
+        </div>
+        <div className={styles.subheader}>
+          Добро пожаловать! <s>Снова</s>
+        </div>
+        <Navigation />
+      </Card>
     )
   }
 }

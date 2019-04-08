@@ -7,11 +7,11 @@ import rootReducer from './rootReducer'
 
 const store = createStore(
   rootReducer,
-  load({ states: ['boards'] }),
+  // load({ states: ['boards'] }),
   composeWithDevTools(
     applyMiddleware(
       thunk,
-      save({ states: ['boards'] })
+      // save({ states: ['boards'] })
     )
   )
 )

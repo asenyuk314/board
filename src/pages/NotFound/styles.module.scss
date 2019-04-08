@@ -1,0 +1,27 @@
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  
+  .image {
+    width: 300px;
+    margin-bottom: 40px;
+    cursor: pointer;
+    z-index: 1;
+
+    &Spinning {
+      animation: rotate 2s linear;
+    }
+  }
+
+  .homeButton {
+    z-index: 2;
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}

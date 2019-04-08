@@ -1,22 +1,28 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import ReactMarkdown from 'react-markdown/with-html'
 
 import Card from 'components/Card'
 import Button from 'components/Button'
+import ImagesPreview from 'components/ImagesPreview'
 import styles from './styles.module.scss'
 
 class Post extends Component {
   render () {
-    const { text } = this.props
+    const { text, files } = this.props
     return (
-      <div className={styles.post}>
-        <Card>
-          {this.renderHeader()}
-          <div className={styles.text}>
-            {text}
-          </div>
-        </Card>
-      </div>
+      <Card className={styles.post}>
+        {this.renderHeader()}
+          <ImagesPreview files={files} />
+          <ReactMarkdown
+            className={classNames(
+              [styles.text],
+              { [styles.textNotEmpty]: text.length > 0 }
+            )}
+            source={text}
+          />
+      </Card>
     )
   }
 
@@ -46,8 +52,10 @@ class Post extends Component {
     id: PropTypes.number.isRequired,
     // Собственно, текст поста
     text: PropTypes.string.isRequired,
-    // id доски. Если прилетает boardId - отрисовывается шапка для превью треда на доске
-    boardId: PropTypes.string
+    // id доски. Если прилетает boardId - отрисовывается шапка для превью треда на доске,
+    boardId: PropTypes.string,
+    // Массив картинок, прикрепленных к посту
+    files: PropTypes.array
   }
 }
 

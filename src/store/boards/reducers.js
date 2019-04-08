@@ -11,11 +11,13 @@ const initialState = {
           posts: [
           {
             id: 0,
-            text: 'Подскажите аниме'
+            text: 'Подскажите аниме',
+            files: []
           },
           {
             id: 1,
-            text: 'Боку но пико'
+            text: 'Боку но пико',
+            files: []
           }
         ]
         }
@@ -31,7 +33,8 @@ const initialState = {
           posts: [
             {
               id: 0,
-              text: 'Тян не нужны!'
+              text: 'Тян не нужны!',
+              files: []
             }
           ]
         },
@@ -40,11 +43,13 @@ const initialState = {
           posts: [
             {
               id: 1,
-              text: 'Господи, как же хочется тяночку!'
+              text: 'Господи, как же хочется тяночку!',
+              files: []
             },
             {
               id: 2,
-              text: 'Разве я многого прошу?'
+              text: 'Разве я многого прошу?',
+              files: []
             }
           ]
         }
@@ -52,7 +57,7 @@ const initialState = {
       postsLength: 3
     }
   ],
-  navigationHidden: false
+  navigationOpen: true
 }
 
 const boards = (state = initialState, action) => {
@@ -62,7 +67,7 @@ const boards = (state = initialState, action) => {
     }
 
     case CREATE_THREAD: {
-      const { post, boardId } = action.payload
+      const { post, files, boardId } = action.payload
       const boardsList = state.boardsList.map(board => {
         if (board.id === boardId) {
           const postsLength = board.postsLength + 1
@@ -72,7 +77,8 @@ const boards = (state = initialState, action) => {
               id: board.postsLength,
               posts: [{
                 id: board.postsLength,
-                text: post
+                text: post,
+                files
               }]
             })
           return { ...board, postsLength, threads }
@@ -83,7 +89,7 @@ const boards = (state = initialState, action) => {
     }
 
     case CREATE_POST: {
-      const { post, boardId, threadId } = action.payload
+      const { post, files, boardId, threadId } = action.payload
       const boardsList = state.boardsList.map(board => {
         if (board.id === boardId) {
           const postsLength = board.postsLength + 1
@@ -93,7 +99,8 @@ const boards = (state = initialState, action) => {
                 .map(post => post)
                 .concat({
                   id: board.postsLength,
-                  text: post
+                  text: post,
+                  files
                 })
               return { ...thread, posts }
             }
@@ -107,8 +114,8 @@ const boards = (state = initialState, action) => {
     }
 
     case HIDE_NAVIGATION: {
-      const navigationHidden = !state.navigationHidden
-      return { ...state, navigationHidden }
+      const navigationOpen = !state.navigationOpen
+      return { ...state, navigationOpen }
     }
 
     default:

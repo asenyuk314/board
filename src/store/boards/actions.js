@@ -4,18 +4,20 @@ export const getInfo = () => ({
   type: GET_INFO
 })
 
-export const createThread = (post, boardId) => ({
+export const createThread = (post, files, boardId) => ({
   type: CREATE_THREAD,
   payload: {
     post,
+    files,
     boardId
   }
 })
 
-export const createPost = (post, boardId, threadId) => ({
+export const createPost = (post, files, boardId, threadId) => ({
   type: CREATE_POST,
   payload: {
     post,
+    files,
     boardId,
     threadId
   }

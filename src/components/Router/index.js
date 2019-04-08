@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Main from 'pages/Main'
-import Board from 'pages/Board'
-import Thread from 'pages/Thread'
 import NotFound from 'pages/NotFound'
+import Page from 'pages/Page'
 
 class Router extends Component {
   render () {
@@ -34,11 +33,11 @@ class Router extends Component {
       .flatMap(({ id: boardId, name, threads }) => [
         {
           path: `/${boardId}`,
-          component: <Board boardId={boardId} boardName={name} />
+          component: <Page boardId={boardId} boardName={name} />
         },
         threads.map(({ id: threadId }) => ({
           path: `/${boardId}/${threadId}`,
-          component: <Thread boardId={boardId} threadId={threadId} />
+          component: <Page boardId={boardId} threadId={threadId} />
         }))
       ])
       .flat()

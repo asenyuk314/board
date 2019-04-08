@@ -4,10 +4,12 @@
   background-color: $AGILE_BG;
   color: $WHITE_TEXT;
   padding: 7px;
-  border-radius: 5px;
+  border-radius: $BORDER_RADIUS;
   user-select: none;
   width: max-content;
   cursor: pointer;
+  font-size: 14px;
+  box-shadow: $BASIC_SHADOW;
 
   &:hover {
     background-color: $DARK_BG;
@@ -16,14 +18,21 @@
   &:active {
     /*Надо будет выбрать другой цвет*/
     background-color: $DARK_BG;
+    box-shadow: none;
   }
 
   &.disabled {
     background-color: $DISABLED_BG;
     cursor: default;
+    box-shadow: none;
   }
 }
 
-.link {
-  text-decoration: none;
+.linkButton {
+  width: max-content;
+
+  .link {
+    text-decoration: none;
+  }
 }
+
