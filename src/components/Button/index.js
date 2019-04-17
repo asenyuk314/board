@@ -10,33 +10,22 @@ class Button extends Component {
     const { children, onClick, goTo, disabled, className } = this.props
     if (disabled) {
       return <div
-        className={classNames(
-          [styles.button],
-          [styles.disabled],
-          [className]
-        )}>
+        className={classNames([styles.button, styles.disabled, className] )}>
         {children}
       </div>
     }
 
     if (goTo) {
       return (
-        <div className={classNames([styles.linkButton], [className])}>
-          <Link className={styles.link} to={goTo}>
-            <div className={styles.button}>
-              {children}
-            </div>
-          </Link>
-        </div>
+        <Link className={classNames([styles.button, styles.link, className])} to={goTo}>
+          {children}
+        </Link>
       )
     }
 
     return (
       <div
-        className={classNames(
-          [styles.button],
-          [className]
-        )}
+        className={classNames([styles.button, className])}
         onClick={onClick}>
         {children}
       </div>
