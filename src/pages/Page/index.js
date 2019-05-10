@@ -8,6 +8,7 @@ import Post from 'components/Post'
 import Card from 'components/Card'
 import Navigation from 'components/Navigation'
 import BoardHeader from 'components/BoardHeader'
+import ModalImage from 'components/ModalImage'
 import styles from './styles.module.scss'
 
 class Page extends Component {
@@ -38,13 +39,14 @@ class Page extends Component {
   }
 
   render () {
-    const { boardId, threadId, boardName, hideNavigation, navigationOpen } = this.props
+    const { boardId, threadId, boardName, hideNavigation, navigationOpen, bigImage } = this.props
     const { formOpen } = this.state
     const sign = boardName ? 'Создать тред' : 'Ответить'
     const path = boardName ? '/' : `/${boardId}`
     const content = boardName ? this.renderThreads() : this.renderPosts()
     return (
       <div className={styles.page}>
+        {bigImage && <ModalImage image={bigImage} />}
         <div className={styles.header} ref={el => { this.headerElement = el }}>
           <div className={styles.topDiv} />
           <Card className={styles.card}>
@@ -78,7 +80,7 @@ class Page extends Component {
   }
 
   renderPosts () {
-    const { boardsList, boardId, threadId } = this.props
+    const { boardsList, boardId, threadId, showModal } = this.props
     const { postsMargin } = this.state
     const posts = boardsList
       .find(({ id }) => id === boardId)
@@ -90,6 +92,7 @@ class Page extends Component {
         {posts.map(item =>
           <Post
             key={`post${item.id}`}
+            showModal={(imagePreviewUrl) => showModal(imagePreviewUrl)}
             { ...item }
           />
         )}
@@ -98,7 +101,7 @@ class Page extends Component {
   }
 
   renderThreads () {
-    const { boardsList, boardId } = this.props
+    const { boardsList, boardId, showModal } = this.props
     const { postsMargin } = this.state
     const threads = boardsList
       .find(({ id }) => id === boardId)
@@ -112,6 +115,7 @@ class Page extends Component {
             id={id}
             text={posts[0].text}
             files={posts[0].files}
+            showModal={(imagePreviewUrl) => showModal(imagePreviewUrl)}
           />
         )}
       </div>
@@ -130,13 +134,15 @@ class Page extends Component {
 
 const mapStateToProps = (state) => ({
   boardsList: state.boards.boardsList,
-  navigationOpen: state.boards.navigationOpen
+  navigationOpen: state.boards.navigationOpen,
+  bigImage: state.boards.bigImage
 })
 
 const mapDispatchToProps = {
   createPost: actions.createPost,
   createThread: actions.createThread,
-  hideNavigation: actions.hideNavigation
+  hideNavigation: actions.hideNavigation,
+  showModal: actions.showModal
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page)

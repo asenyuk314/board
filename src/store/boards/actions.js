@@ -1,4 +1,4 @@
-import { GET_INFO, CREATE_THREAD, CREATE_POST, HIDE_NAVIGATION } from './consts'
+import { GET_INFO, CREATE_THREAD, CREATE_POST, HIDE_NAVIGATION, SHOW_MODAL } from './consts'
 
 export const getInfo = () => ({
   type: GET_INFO
@@ -25,4 +25,11 @@ export const createPost = (post, files, boardId, threadId) => ({
 
 export const hideNavigation = () => ({
   type: HIDE_NAVIGATION
+})
+
+export const showModal = (image) => ({
+  type: SHOW_MODAL,
+  payload: {
+    image
+  }
 })

@@ -20,11 +20,12 @@ class Form extends Component {
     return (
       <div className={styles.form}>
         <input
+          className={styles.filesInput}
           type='file'
           onChange={e => this.onFileAdd(e)}
           disabled={files.length > 3}
         />
-        <ImagesPreview files={files} />
+        <ImagesPreview files={files} onClick={file => this.removeFile(file)}/>
         <Input
           className={styles.input}
           value={inputValue}
@@ -65,6 +66,12 @@ class Form extends Component {
       })
     }
     file && reader.readAsDataURL(file)
+  }
+
+  removeFile (file) {
+    const { files } = this.state
+    const updatedFiles = files.filter(({ imagePreviewUrl }) => file !== imagePreviewUrl)
+    this.setState({ files: updatedFiles })
   }
 }
 

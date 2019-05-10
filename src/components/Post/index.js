@@ -10,11 +10,11 @@ import styles from './styles.module.scss'
 
 class Post extends Component {
   render () {
-    const { text, files } = this.props
+    const { text, files, showModal } = this.props
     return (
       <Card className={styles.post}>
         {this.renderHeader()}
-          <ImagesPreview files={files} />
+          <ImagesPreview files={files} onClick={showModal} />
           <ReactMarkdown
             className={classNames(
               [styles.text],

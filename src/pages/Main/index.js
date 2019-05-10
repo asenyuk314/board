@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import programmerChan from 'resources/images/programmerChan.png'
 import Card from 'components/Card'
 import Navigation from 'components/Navigation'
 import * as actions from 'store/boards/actions'
@@ -18,6 +19,7 @@ class Main extends Component {
         <div className={styles.header}>
           Реакт.ч
         </div>
+        <img className={styles.image} src={programmerChan} alt='Погромист-тян' />
         <div className={styles.subheader}>
           Добро пожаловать! <s>Снова</s>
         </div>

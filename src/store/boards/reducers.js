@@ -1,63 +1,10 @@
-import { GET_INFO, CREATE_THREAD, CREATE_POST, HIDE_NAVIGATION } from './consts'
+import fakeData from 'resources/fakeData'
+import { GET_INFO, CREATE_THREAD, CREATE_POST, HIDE_NAVIGATION, SHOW_MODAL } from './consts'
 
 const initialState = {
-  boardsList: [
-    {
-      id: 'a',
-      name: 'Аниме',
-      threads: [
-        {
-          id: 0,
-          posts: [
-          {
-            id: 0,
-            text: 'Подскажите аниме',
-            files: []
-          },
-          {
-            id: 1,
-            text: 'Боку но пико',
-            files: []
-          }
-        ]
-        }
-      ],
-      postsLength: 2
-    },
-    {
-      id: 'b',
-      name: 'Бред',
-      threads: [
-        {
-          id: 0,
-          posts: [
-            {
-              id: 0,
-              text: 'Тян не нужны!',
-              files: []
-            }
-          ]
-        },
-        {
-          id: 1,
-          posts: [
-            {
-              id: 1,
-              text: 'Господи, как же хочется тяночку!',
-              files: []
-            },
-            {
-              id: 2,
-              text: 'Разве я многого прошу?',
-              files: []
-            }
-          ]
-        }
-      ],
-      postsLength: 3
-    }
-  ],
-  navigationOpen: true
+  boardsList: fakeData,
+  navigationOpen: false,
+  bigImage: null
 }
 
 const boards = (state = initialState, action) => {
@@ -116,6 +63,11 @@ const boards = (state = initialState, action) => {
     case HIDE_NAVIGATION: {
       const navigationOpen = !state.navigationOpen
       return { ...state, navigationOpen }
+    }
+
+    case SHOW_MODAL: {
+      const { image } = action.payload
+      return { ...state, bigImage: image }
     }
 
     default:

@@ -5,7 +5,7 @@ import styles from './styles.module.scss'
 
 class ImagesPreview extends Component {
   render () {
-    const { files } = this.props
+    const { files, onClick } = this.props
     return (
       <div className={classNames(
         [styles.imagesPreview],
@@ -17,6 +17,7 @@ class ImagesPreview extends Component {
             className={styles.image}
             src={imagePreviewUrl}
             alt={`${file.lastModified}`}
+            onClick={() => onClick && onClick(imagePreviewUrl)}
           />
         )}
       </div>

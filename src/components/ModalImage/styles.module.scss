@@ -1,0 +1,30 @@
+@import 'resources/variables.scss';
+
+.modalImage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: .5;
+    z-index: 11;
+  }
+
+  .image {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    z-index: 12;
+    border-radius: $BORDER_RADIUS;
+  }
+}
