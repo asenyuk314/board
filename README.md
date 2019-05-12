@@ -1,5 +1,7 @@
 # React.ch
 
+A little imageboard based on react
+
 ## Installation
 
 Install dependencies
